@@ -1,0 +1,28 @@
+## Laravel - The PHP framework for web artisans || HulkApps Task
+
+——————————————————————————————————
+
+Task 1 - Backend with Rest Service
+
+The backend should be secure and fast with database seeding enabled as well as CORS for each endpoint.
+
+Authentication Middleware
+Controllers should be written in a clean, approachable coding style.
+Query Filters implementation
+Users should be able to follow a selected movie
+API Pagination
+Slugs
+Database
+Database Migrations
+Database Seeds
+Routes
+API Postman Collection
+
+The API should be accessible in a local environment from ( example )
+
+<http://localhost:8000/api>
+
+JWT Token reference docs
+
+<https://jwt.io/introduction/>
+<https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html>
