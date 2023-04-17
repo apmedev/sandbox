@@ -30,11 +30,13 @@ JWT Token reference docs
 ## Setup (DDEV)
 
 1. `ddev config`
-2. `ddev start`
-3. `ddev php artisan jwt:secret`
-4. `ddev php artisan migrate --seed`
-5. Import requests for insomnia: `app_template_requests.json`
-6. Import requsts for postman: `postman_collection.json`
+2. `copy .env.example into .env`
+3. `ddev start`
+4. `ddev composer install`
+5. `ddev php artisan jwt:secret`
+6. `ddev php artisan migrate --seed`
+7. Import requests for insomnia: `app_template_requests.json`
+8. Import requsts for postman: `postman_collection.json`
 
 ## User
 
