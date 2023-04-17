@@ -26,3 +26,17 @@ JWT Token reference docs
 
 <https://jwt.io/introduction/>
 <https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html>
+
+## Setup (DDEV)
+
+1. `ddev config`
+2. `ddev start`
+3. `ddev php artisan jwt:secret`
+4. `ddev php artisan migrate --seed`
+
+## User
+
+```
+"email": "test2@example.com",
+"password": "password456"
+```

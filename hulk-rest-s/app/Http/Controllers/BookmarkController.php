@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBookmarkRequest;
 use App\Http\Requests\UpdateBookmarkRequest;
+use App\Models\Movie;
 use App\Models\Bookmark;
+use App\Models\User;
 
 class BookmarkController extends Controller
 {
@@ -13,7 +15,8 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        //
+        $bookmarkedMovies = auth()->user()->movies;
+        return response()->json($bookmarkedMovies);
     }
 
     /**
@@ -29,7 +32,17 @@ class BookmarkController extends Controller
      */
     public function store(StoreBookmarkRequest $request)
     {
-        //
+        $user = User::findOrFail($request['user_id']);
+        $movie = Movie::findOrFail($request['movie_id']);
+
+        if (!$user->movies()->where('movie_id', $movie->id)->exists()) {
+            $user->movies()->attach($movie);
+            $movies = $user->movies()->paginate(25);
+            return response()->json(['message' => 'Bookmark created successfully.', 'movies' => $movies]);
+        }
+
+        $movies = $user->movies()->paginate(10);
+        return response()->json(['message' => 'Bookmark already exists.', 'movies' => $movies]);
     }
 
     /**

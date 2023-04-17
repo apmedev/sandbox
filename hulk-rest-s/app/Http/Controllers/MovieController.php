@@ -13,7 +13,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $movies = Movie::paginate(10);
+        return response()->json($movies);
     }
 
     /**
@@ -29,7 +30,22 @@ class MovieController extends Controller
      */
     public function store(StoreMovieRequest $request)
     {
-        //
+        $movie = Movie::where('title', $request['name'])->first();
+        if ($movie) {
+            return response()->json([
+                'message' => 'Movie already exists',
+                'data' => $movie,
+            ], 200);
+        }
+
+        $movie = new Movie;
+        $movie->name = $validatedData['name'];
+        $movie->save();
+
+        return response()->json([
+            'message' => 'Movie created successfully',
+            'data' => $movie,
+        ], 201);
     }
 
     /**

@@ -14,20 +14,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
 /** Get All movies */
 /** Add movie to user list movie_id user_id */
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'auth'
+    'prefix' => 'auth',
+    'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 });
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'bookmarks',
+    'namespace' => 'App\Http\Controllers',
+], function ($router) {
+    Route::get('index', 'BookmarkController@index');
+    Route::post('store', 'BookmarkController@store');
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'movies',
+    'namespace' => 'App\Http\Controllers',
+], function ($router) {
+    Route::get('index', 'MovieController@index');
+    Route::post('store', 'MovieController@store');
+});
+
+
