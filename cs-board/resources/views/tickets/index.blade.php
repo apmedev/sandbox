@@ -1,15 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Tickets list') }}
         </h2>
     </x-slot>
  
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-link href="{{ route('tickets.create') }}" class="m-4">Add new ticket</x-link>
-
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
+            @can('create ticket')
+                 <x-link href="{{ route('tickets.create') }}" class="m-4">Add new ticket</x-link>
+            @endcan
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -18,7 +19,7 @@
                                 Ticket name
                             </th>
                             <th scope="col" class="px-6 py-3">
- 
+                                Actions
                             </th>
                         </tr>
                         </thead>
@@ -29,14 +30,18 @@
                                     {{ $ticket->name }}
                                 </td>
                                 <td class="px-6 py-4">
+                                @can('edit ticket')
                                     <x-link href="{{ route('tickets.edit', $ticket) }}">Edit</x-link>
-                                    <form method="POST" action="{{ route('tasks.destroy', $ticket) }}" class="inline-block">
+                                @endcan
+                                @can('delete ticket')
+                                    <form method="POST" action="{{ route('tickets.destroy', $ticket) }}" class="inline-block">
                                         @csrf
                                         @method('DELETE')
                                         <x-danger-button
                                             type="submit"
                                             onclick="return confirm('Are you sure?')">Delete</x-danger-button>
                                     </form>
+                                @endcan
                                 </td>
                             </tr>
                         @empty

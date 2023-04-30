@@ -14,6 +14,14 @@ class StoreTicketRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+{
+    $this->merge([
+        'creator_id' => auth()->id(),
+    ]);
+}
+
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,8 +30,9 @@ class StoreTicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'description' => 'text'
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'creator_id' => 'required',
         ];
     }
 }
