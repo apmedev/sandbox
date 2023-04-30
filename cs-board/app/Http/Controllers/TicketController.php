@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Ticket;
-
+use Illuminate\Support\Facades\DB;
 class TicketController extends Controller
 {
     /**
@@ -13,7 +13,59 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets= Ticket::all();
+        $role = auth()->user()->getRoleNames()[0]; // get the user's role
+
+        if ($role === 'Administrator') {
+            // administrator can see all tickets
+            $tickets = DB::table('tickets')
+                ->select('*')
+                ->whereNull('agent_id')
+                ->orderBy('created_at', 'desc')
+                ->orderByRaw("
+                    CASE status
+                        WHEN 'created' THEN 1
+                        WHEN 'assigned' THEN 2
+                        WHEN 'processing' THEN 3
+                        WHEN 'done' THEN 4
+                        WHEN 'cantfix' THEN 5
+                    END
+                ")
+                ->get();
+        } elseif ($role === 'Customer') {
+            // customer can only see their own tickets
+            $tickets = DB::table('tickets')
+                ->select('*')
+                ->where('creator_id', '=', auth()->id())
+                ->orderBy('created_at', 'desc')
+                ->orderByRaw("
+                    CASE status
+                        WHEN 'created' THEN 1
+                        WHEN 'assigned' THEN 2
+                        WHEN 'processing' THEN 3
+                        WHEN 'done' THEN 4
+                        WHEN 'cantfix' THEN 5
+                    END
+                ")
+                ->get();
+
+        } elseif ($role === 'Agent') {
+            // admin can see tickets assigned to them or unassigned
+
+            $tickets = DB::table('tickets')
+                ->select('*')
+                ->where('agent_id', '=', auth()->id())
+                ->orderBy('created_at', 'desc')
+                ->orderByRaw("
+                    CASE status
+                        WHEN 'created' THEN 1
+                        WHEN 'assigned' THEN 2
+                        WHEN 'processing' THEN 3
+                        WHEN 'done' THEN 4
+                        WHEN 'cantfix' THEN 5
+                    END
+                    ")
+                    ->get();
+        }
  
         return view('tickets.index', compact('tickets'));
     }
