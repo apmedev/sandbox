@@ -30,9 +30,25 @@
 6. `npm install`
 7. `npm run dev`
 
-## User
+## Users
+
+**Admin user:**
 
 ```
-"email": "admin@example.com",
-"password": "password123"
+"email": "admin@admin.com",
+"password": "Password123"
+```
+
+**Agent user:**
+
+```
+"email": "agent@agent.com",
+"password": "Password123"
+```
+
+**Standard user:**
+
+```
+"email": "customer@customer.com",
+"password": "Password123"
 ```
