@@ -59,4 +59,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function createdTickets()
+    {
+        return $this->hasMany(Ticket::class, 'creator_id');
+    }
+
+    public function assignedTickets()
+    {
+        return $this->hasMany(Ticket::class, 'agent_id');
+    }
 }

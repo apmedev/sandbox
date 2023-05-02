@@ -20,6 +20,10 @@
                                 <th scope="col" class="px-6 py-3">
                                 Status
                             </th>
+                            </th>
+                                <th scope="col" class="px-6 py-3">
+                                Agent
+                            </th>
                             <th scope="col" class="px-6 py-3">
                                 Actions
                             </th>
@@ -33,6 +37,13 @@
                                 </td>
                                 <td class="px-6 py-4 font-medium text-black text-gray-900 whitespace-nowrap">
                                     {{ $ticket->status }}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-black text-gray-900 whitespace-nowrap">
+                                     @if($ticket->agent_id)
+                                     {{ $ticket->agent->email }}
+                                     @else
+
+                                     @endif
                                 </td>
                                 <td class="px-6 py-4">
                                 @can('edit ticket')

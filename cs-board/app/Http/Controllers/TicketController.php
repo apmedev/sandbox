@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Ticket;
+use App\Enums\TicketStatus;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 class TicketController extends Controller
 {
     /**
@@ -107,7 +109,10 @@ class TicketController extends Controller
     {
         $this->authorize('edit ticket');
 
-        return view('tickets.edit', compact('ticket'));
+        $allStatuses = TicketStatus::getValues();
+        $allAgents = Role::where('name', 'agent')->first()->users()->get();
+
+        return view('tickets.edit', compact('ticket', 'allStatuses', 'allAgents'));
     }
 
     /**
