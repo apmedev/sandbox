@@ -5,13 +5,19 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('tickets.index') }}">
+                    <a href="{{ route('dashboard') }}">
                         <x-application-mark class="block w-auto h-9" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                @can('list users')
+                    <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                @endcan
+
                     <x-nav-link href="{{ route('tickets.index') }}" :active="request()->routeIs('tickets.*')">
                         {{ __('Tickets') }}
                     </x-nav-link>
@@ -139,6 +145,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @can('list users')
+                <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                    {{ __('Users') }}
+                </x-responsive-nav-link>
+            @endcan
             <x-responsive-nav-link href="{{ route('tickets.index') }}" :active="request()->routeIs('tickets.*')">
                 {{ __('Tickets') }}
             </x-responsive-nav-link>

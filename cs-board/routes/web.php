@@ -27,4 +27,5 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('tickets', \App\Http\Controllers\TicketController::class);
+    Route::resource('users', \App\Http\Controllers\UserController::class);
 });

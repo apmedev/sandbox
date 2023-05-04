@@ -28,6 +28,9 @@ class UsersSeeder extends Seeder
         Permission::create(['name' => 'assign ticket']);
         Permission::create(['name' => 'invite agent']);
 
+        Permission::create(['name' => 'list users']);
+        Permission::create(['name' => 'delete user']);
+
         // create roles and assign existing permissions
         $adminRole = Role::create(['name' => 'Administrator']);
         $adminRole->givePermissionTo('view all tickets');
@@ -36,6 +39,8 @@ class UsersSeeder extends Seeder
         $adminRole->givePermissionTo('delete ticket');
         $adminRole->givePermissionTo('assign ticket');
         $adminRole->givePermissionTo('invite agent');
+        $adminRole->givePermissionTo('list users');
+        $adminRole->givePermissionTo('delete user');
 
         $agentRole = Role::create(['name' => 'Agent']);
         $agentRole->givePermissionTo('view all tickets');
