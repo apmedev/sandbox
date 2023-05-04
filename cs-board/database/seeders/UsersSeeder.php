@@ -41,7 +41,6 @@ class UsersSeeder extends Seeder
         $agentRole->givePermissionTo('view all tickets');
         $agentRole->givePermissionTo('create ticket');
         $agentRole->givePermissionTo('edit ticket');
-        $agentRole->givePermissionTo('delete ticket');
 
         $customerRole = Role::create(['name' => 'Customer']);
         $customerRole->givePermissionTo('create ticket');

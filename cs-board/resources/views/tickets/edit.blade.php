@@ -24,7 +24,7 @@
                             <x-label for="description" value="{{ __('Description') }}" />
                             <x-input id="description" class="block w-full mt-1" type="text" name="description" :value="$ticket->description" required autofocus autocomplete="description" />
                         </div>
-
+                        @can('assign ticket')
                         <div>
                         <x-label for="agent_id" value="{{ __('Agent') }}" />
                         <select name="agent_id" id="agent_id">
@@ -37,15 +37,15 @@
                             @endif
                         </select>
                         </div>
-
+                        @endcan
                         <div>
                             <x-label for="status-current" value="{{ __('Status') }}" />
-                            <x-input id="status-current" class="block w-full mt-1" type="select" name="status-current" :value="$ticket->status" required autofocus disabled autocomplete="status" />
+                            <x-input id="status-current" class="block w-full mt-1" type="text" name="status-current" :value="$ticket->status" required autofocus disabled autocomplete="status" />
                         </div>
 
                         <div>
                             <x-label for="status">Update status:</x-label>
-                            <select name="status" id="status">
+                            <select name="status" id="status" class="block w-full mt-1">
                             @foreach ($allStatuses as $status)
                                 <option value="{{ $status }}">{{ $status }}</option>
                             @endforeach
