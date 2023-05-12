@@ -45,7 +45,6 @@ JWT Token reference docs:
 "password": "password456"
 ```
 
-
 ## Info
 
 Fetches most popular movies in year 2020 from <http://www.omdbapi.com/> with `API_Key: 49733682`
