@@ -19,7 +19,7 @@ class BookmarkSeeder extends Seeder
        $movies = Movie::all();
 
        // Generate 20 random bookmarks
-       foreach (range(1, 20) as $i) {
+       foreach (range(1, 5) as $i) {
            $user = $users->random();
            $movie = $movies->random();
 

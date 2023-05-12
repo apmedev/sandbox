@@ -13,8 +13,15 @@ return new class extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            
+            $table->string('title');
+            $table->string('year');
+            $table->string('released');
+            $table->string('runtime');
+            $table->string('genre');
+            $table->string('director');
+            $table->string('poster');
+            $table->string('imdbRating');
+
             $table->timestamps();
         });
     }
