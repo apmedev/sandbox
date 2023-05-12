@@ -1,13 +1,5 @@
-<h1 align="center">Examples</h1>
-
-<p align="center">
-  Example projects and code. Each project contains a readme with instructions.
-</p>
+<h1 align="center">Sandbox</h1>
 
 ---
-
-<p align="center">
-
-</p>
 
 ---
