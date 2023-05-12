@@ -1,0 +1,22 @@
+{
+    "name": "apmedev/movies-service",
+    "description": "Use open api for movies data.",
+    "type": "laravel-package",
+    "autoload": {
+        "psr-4": {
+            "apmedev\\MoviesService\\Console\\": "src/Console"
+        }
+    },
+    "authors": [
+        {
+            "name": "apmedev",
+            "email": "apmedev@gmail.com"
+        }
+    ],
+    "require": {},
+    "scripts": {
+        "post-install-cmd": [
+            "apmedev\\MoviesService\\Console\\Commands\\MoviesServiceApiKeyCommand"
+        ]
+    }
+}
