@@ -1,4 +1,4 @@
-# Electron AI and services Hub
+# Electron AI and tools desktop app
 
 Simple Electron application.
 
