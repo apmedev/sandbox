@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
+  <title>Settings - AI Desktop Hub</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .settings-form {
+      width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .settings-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .settings-form input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .settings-form button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form class="settings-form">
+      <label for="widthInput">Window Width (in pixels):</label>
+      <input type="number" id="widthInput" min="0">
+      <label for="heightInput">Window Height (in pixels):</label>
+      <input type="number" id="heightInput" min="0">
+      <div class="checkbox">
+        <label for="fullscreen-checkbox">Use Fullscreen</label>
+        <input type="checkbox" id="fullscreen-checkbox">
+      </div>
+      <button type="button" id="saveButton" class="button is-primary">Save</button>
+    </form>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // IPC event listener to update the checkbox status
+    ipcRenderer.on('update-fullscreen-checkbox', () => {
+      const fullscreenCheckbox = document.getElementById('fullscreen-checkbox');
+      fullscreenCheckbox.checked = window.electronSettings.useFullScreen;
+    });
+
+    // Send an IPC message to the main process to request the window size settings
+    ipcRenderer.send('get-window-size-settings');
+  </script>
+  <script src="settings.js"></script>
+</body>
+</html>
