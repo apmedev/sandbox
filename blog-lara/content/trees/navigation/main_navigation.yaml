@@ -1,0 +1,23 @@
+tree:
+  -
+    id: 98716bc7-5974-4001-9eb5-310cd976326c
+    title: Deals
+  -
+    id: 6ebddc0d-4b3d-455c-9d2c-986df52fcaf5
+    title: Community
+    children:
+      -
+        id: cd4b6ae8-550c-45a0-8939-35ca6fe639a0
+        title: Login
+      -
+        id: 92d91cc1-91bf-485f-b826-2a4ec2512c89
+        title: Register
+      -
+        id: 7080a3c3-68d2-4ebf-a597-d097546777a0
+        title: Dashboard
+      -
+        id: da28a5de-ffa2-4611-9548-e77c1c9e9f7f
+        title: Settings
+  -
+    id: 2f83ebd7-fd4c-410b-9fea-ed9944fc7f80
+    title: Events
