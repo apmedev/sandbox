@@ -1,7 +1,4 @@
 #!/bin/bash
-# Assuming that the setup is pulled
-# git clone https://github.com/arminezu6yn4xgma0i/mac-setup-script.git
-# Assuming that im in Projects/mac-setup-script
 
 set -euo pipefail
 
